@@ -1,7 +1,5 @@
-// ═══════════════════════════════════════
-// menu.js — Pantalla de inicio
-// ═══════════════════════════════════════
 
+// menu.js — Pantalla de inicio
 var Menu = (function () {
   var _selectedMode  = 'solo';
   var _selectedDiff  = 'easy';

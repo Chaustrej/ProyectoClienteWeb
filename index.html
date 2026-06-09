@@ -10,7 +10,7 @@
 </head>
 <body>
 
-  <!-- ══════════════ PANTALLA DE INICIO ══════════════ -->
+  <!-- PANTALLA DE INICIO -->
   <div id="screen-menu" class="screen active">
     <div class="menu-bg-shapes"></div>
     <div class="menu-container">
@@ -21,7 +21,9 @@
       </div>
 
       <div class="config-card">
+
         <!-- Modo de juego -->
+
         <div class="config-section">
           <label class="config-label">Modo de Juego</label>
           <div class="btn-group" id="mode-selector">
@@ -32,6 +34,7 @@
         </div>
 
         <!-- Nombres -->
+
         <div class="config-section" id="names-section">
           <label class="config-label">Jugador(es)</label>
           <div id="name-inputs">
@@ -41,6 +44,7 @@
         </div>
 
         <!-- Dificultad -->
+
         <div class="config-section">
           <label class="config-label">Dificultad</label>
           <div class="btn-group" id="difficulty-selector">
@@ -50,4 +54,94 @@
           </div>
         </div>
 
+
+        <!-- Temática -->
+        <div class="config-section">
+          <label class="config-label">Temática Visual</label>
+          <div class="theme-picker" id="theme-selector">
+            <button class="theme-btn active" data-theme="emojis">
+              <span class="theme-preview">😄🎉🌟🔥</span>
+              <span>Emojis</span>
+            </button>
+            <button class="theme-btn" data-theme="sports">
+              <span class="theme-preview">⚽🏀🎾🏆</span>
+              <span>Deportes</span>
+            </button>
+            <button class="theme-btn" data-theme="flags">
+              <span class="theme-preview">🇧🇷🇯🇵🇫🇷🇩🇪</span>
+              <span>Banderas</span>
+            </button>
+          </div>
+        </div>
+
+        <button id="start-btn" class="start-btn">
+          <span>¡Jugar!</span>
+          <span class="btn-arrow">→</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+    <!-- PANTALLA DE JUEGO  -->
+  <div id="screen-game" class="screen">
+
+    <!-- interfaz de usuario superior -->
+    <header id="hud" class="hud">
+      <div class="hud-left">
+        <button id="restart-btn" class="hud-btn" title="Volver al menú">⟵ Menú</button>
+        <div id="hud-theme-badge" class="theme-badge"></div>
+      </div>
+      <div class="hud-center" id="hud-center"></div>
+      <div class="hud-right" id="hud-right"></div>
+    </header>
+
+    <!-- Tablero -->
+    <main id="board-wrapper">
+      <div id="board"></div>
+    </main>
+
+    <!-- Panel de logros -->
+    <aside id="achievements-panel">
+      <h3 class="ach-title">🏅 Logros</h3>
+      <div id="achievements-list"></div>
+    </aside>
+
+    <!-- Notificación flotante de logro -->
+    <div id="achievement-toast" class="achievement-toast hidden">
+      <span id="toast-icon"></span>
+      <div>
+        <strong id="toast-name"></strong>
+        <p id="toast-desc"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANTALLA DE FIN DE PARTIDA -->
+  <div id="screen-end" class="screen">
+    <div class="end-container">
+      <div id="end-trophy" class="end-trophy">🏆</div>
+      <h2 id="end-title" class="end-title"></h2>
+      <p id="end-subtitle" class="end-subtitle"></p>
+      <div id="end-stats" class="end-stats"></div>
+      <div id="end-achievements" class="end-achievements"></div>
+      <div class="end-buttons">
+        <button id="play-again-btn" class="start-btn small">🔄 Jugar de nuevo</button>
+        <button id="back-menu-btn" class="start-btn small outline">🏠 Menú principal</button>
+      </div>
+    </div>
+  </div>
+  <!-- SCRIPTS -->
+  <script src="js/themes.js"></script>
+  <script src="js/timer.js"></script>
+  <script src="js/achievements.js"></script>
+  <script src="js/board.js"></script>
+  <script src="js/modes.js"></script>
+  <script src="js/hud.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/endScreen.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/app.js"></script> 
+
+
 </body>
+</html>
