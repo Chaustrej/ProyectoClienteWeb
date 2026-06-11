@@ -1,81 +1,35 @@
-
-// menu.js — Pantalla de inicio
-var Menu = (function () {
-  var _selectedMode  = 'solo';
-  var _selectedDiff  = 'easy';
-  var _selectedTheme = 'emojis';
-
-  function init() {
-    _bindModeButtons();
-    _bindDiffButtons();
-    _bindThemeButtons();
-    _bindStartButton();
-  }
-
-  function _bindModeButtons() {
-    var btns = document.querySelectorAll('.mode-btn');
-    btns.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        btns.forEach(function (b) { b.classList.remove('active'); });
-        btn.classList.add('active');
-        _selectedMode = btn.dataset.mode;
-        _updateNameFields();
-      });
-    });
-  }
-
-  function _bindDiffButtons() {
-    var btns = document.querySelectorAll('.diff-btn');
-    btns.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        btns.forEach(function (b) { b.classList.remove('active'); });
-        btn.classList.add('active');
-        _selectedDiff = btn.dataset.diff;
-      });
-    });
-  }
-
-  function _bindThemeButtons() {
-    var btns = document.querySelectorAll('.theme-btn');
-    btns.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        btns.forEach(function (b) { b.classList.remove('active'); });
-        btn.classList.add('active');
-        _selectedTheme = btn.dataset.theme;
-        applyTheme(_selectedTheme);
-      });
-    });
-    // Aplicar tema inicial
-    applyTheme(_selectedTheme);
-  }
-
-  function _bindStartButton() {
-    document.getElementById('start-btn').addEventListener('click', function () {
-      var p1 = document.getElementById('player1-name').value.trim() || 'Jugador 1';
-      var p2 = document.getElementById('player2-name').value.trim() || 'Jugador 2';
-
-      var config = {
-        mode:       _selectedMode,
-        difficulty: _selectedDiff,
-        theme:      _selectedTheme,
-        player1:    p1,
-        player2:    p2
-      };
-
-      EndScreen.setLastConfig(config);
-      Game.start(config);
-      showScreen('screen-game');
-    });
-  }
-
-  function _updateNameFields() {
-    var p2Input = document.getElementById('player2-name');
-    if (_selectedMode === 'pvp') {
-      p2Input.classList.remove('hidden');
-    } else {
-      p2Input.classList.add('hidden');
+function cambiarTurno() {
+    if (estadoGlobal.modo === 'pvp') {
+        estadoGlobal.indiceJugadorActivo = estadoGlobal.indiceJugadorActivo === 0 ? 1 : 0;
     }
-  }
+}
 
-  return { init: init };
-})();
+function iniciarJuego() {
+    estadoGlobal.modo = document.getElementById('selector-modo').value;
+    estadoGlobal.dificultad = parseInt(document.getElementById('selector-dificultad').value);
+    estadoGlobal.tematica = document.getElementById('selector-tematica').value;
+    
+    const nombreJ1 = document.getElementById('nombre-jugador1').value || 'Jugador 1';
+    estadoGlobal.jugadores = [{ nombre: nombreJ1, puntaje: 0 }];
+    
+    if (estadoGlobal.modo === 'pvp') {
+        const nombreJ2 = document.getElementById('nombre-jugador2').value || 'Jugador 2';
+        estadoGlobal.jugadores.push({ nombre: nombreJ2, puntaje: 0 });
+    }
+
+    estadoGlobal.indiceJugadorActivo = 0;
+    estadoGlobal.movimientos = 0;
+    estadoGlobal.paresEncontrados = 0;
+    estadoGlobal.tiempo = 0;
+    estadoGlobal.aciertosConsecutivos = 0;
+    estadoGlobal.logrosDesbloqueados = [];
+    detenerCronometro();
+
+    aplicarTematica(estadoGlobal.tematica);
+    generarTablero();
+    actualizarPanel();
+
+    document.getElementById('pantalla-configuracion').classList.add('oculto');
+    document.getElementById('pantalla-fin').classList.add('oculto');
+    document.getElementById('pantalla-juego').classList.remove('oculto');
+}
