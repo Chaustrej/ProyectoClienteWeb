@@ -1,147 +1,80 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FlipVerse — Memory Match</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repsol | Juego de Memoria</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <div id="notificaciones"></div>
 
-  <!-- PANTALLA DE INICIO -->
-  <div id="screen-menu" class="screen active">
-    <div class="menu-bg-shapes"></div>
-    <div class="menu-container">
-      <div class="logo-block">
-        <span class="logo-icon">🃏</span>
-        <h1 class="logo-title">FlipVerse</h1>
-        <p class="logo-sub">El universo de la memoria</p>
-      </div>
+    <section id="pantalla-configuracion" class="pantalla activa">
+        <h1>Repsol</h1>
+        <div class="formulario-configuracion">
+            <label>Modo de Juego:</label>
+            <select id="selector-modo">
+                <option value="solitario">Solitario Cronometrado</option>
+                <option value="pvp">Multijugador Local (PvP)</option>
+                <option value="libre">Modo Libre (Práctica)</option>
+            </select>
 
-      <div class="config-card">
+            <div id="entradas-jugadores">
+                <input type="text" id="nombre-jugador1" placeholder="Nombre Jugador 1" value="Jugador 1">
+                <input type="text" id="nombre-jugador2" placeholder="Nombre Jugador 2" class="oculto">
+            </div>
 
-        <!-- Modo de juego -->
+            <label>Dificultad:</label>
+            <select id="selector-dificultad">
+                <option value="16">Fácil (4x4)</option>
+                <option value="36">Intermedio (6x6)</option>
+                <option value="64">Difícil (8x8)</option>
+            </select>
 
-        <div class="config-section">
-          <label class="config-label">Modo de Juego</label>
-          <div class="btn-group" id="mode-selector">
-            <button class="mode-btn active" data-mode="solo">⏱ Solitario</button>
-            <button class="mode-btn" data-mode="pvp">⚔️ PvP</button>
-            <button class="mode-btn" data-mode="free">🎯 Libre</button>
-          </div>
+            <label>Temática Visual:</label>
+            <select id="selector-tematica">
+                <option value="animales">Animales</option>
+                <option value="espacio">Espacio</option>
+                <option value="frutas">Frutas</option>
+            </select>
+
+            <button id="btn-iniciar" class="btn primario">Iniciar Juego</button>
         </div>
+    </section>
 
-        <!-- Nombres -->
+    <section id="pantalla-juego" class="pantalla oculto">
+        <header id="panel-control">
+            <div class="elemento-panel" id="panel-jugadores"></div>
+            <div class="elemento-panel" id="panel-tiempo">Tiempo: 00:00</div>
+            <div class="elemento-panel" id="panel-movimientos">Movimientos: 0</div>
+            <button id="btn-reiniciar" class="btn secundario">Reiniciar</button>
+        </header>
+        <main id="contenedor-tablero">
+            <div id="tablero"></div>
+        </main>
+    </section>
 
-        <div class="config-section" id="names-section">
-          <label class="config-label">Jugador(es)</label>
-          <div id="name-inputs">
-            <input type="text" id="player1-name" class="name-input" placeholder="Tu nombre…" maxlength="20" />
-            <input type="text" id="player2-name" class="name-input hidden" placeholder="Jugador 2…" maxlength="20" />
-          </div>
+    <section id="pantalla-fin" class="pantalla oculto">
+        <div class="tarjeta-fin">
+            <h2>¡Partida Finalizada!</h2>
+            <div id="estadisticas-fin"></div>
+            <div id="logros-fin"></div>
+            <div class="botones-fin">
+                <button id="btn-jugar-nuevo" class="btn primario">Jugar de Nuevo</button>
+                <button id="btn-volver-menu" class="btn secundario">Volver al Menú</button>
+            </div>
         </div>
+    </section>
 
-        <!-- Dificultad -->
-
-        <div class="config-section">
-          <label class="config-label">Dificultad</label>
-          <div class="btn-group" id="difficulty-selector">
-            <button class="diff-btn active" data-diff="easy">🟢 Fácil (4×4)</button>
-            <button class="diff-btn" data-diff="medium">🟡 Medio (6×6)</button>
-            <button class="diff-btn" data-diff="hard">🔴 Difícil (8×8)</button>
-          </div>
-        </div>
-
-
-        <!-- Temática -->
-        <div class="config-section">
-          <label class="config-label">Temática Visual</label>
-          <div class="theme-picker" id="theme-selector">
-            <button class="theme-btn active" data-theme="emojis">
-              <span class="theme-preview">😄🎉🌟🔥</span>
-              <span>Emojis</span>
-            </button>
-            <button class="theme-btn" data-theme="sports">
-              <span class="theme-preview">⚽🏀🎾🏆</span>
-              <span>Deportes</span>
-            </button>
-            <button class="theme-btn" data-theme="flags">
-              <span class="theme-preview">🇧🇷🇯🇵🇫🇷🇩🇪</span>
-              <span>Banderas</span>
-            </button>
-          </div>
-        </div>
-
-        <button id="start-btn" class="start-btn">
-          <span>¡Jugar!</span>
-          <span class="btn-arrow">→</span>
-        </button>
-      </div>
-    </div>
-  </div>
-
-    <!-- PANTALLA DE JUEGO  -->
-  <div id="screen-game" class="screen">
-
-    <!-- interfaz de usuario superior -->
-    <header id="hud" class="hud">
-      <div class="hud-left">
-        <button id="restart-btn" class="hud-btn" title="Volver al menú">⟵ Menú</button>
-        <div id="hud-theme-badge" class="theme-badge"></div>
-      </div>
-      <div class="hud-center" id="hud-center"></div>
-      <div class="hud-right" id="hud-right"></div>
-    </header>
-
-    <!-- Tablero -->
-    <main id="board-wrapper">
-      <div id="board"></div>
-    </main>
-
-    <!-- Panel de logros -->
-    <aside id="achievements-panel">
-      <h3 class="ach-title">🏅 Logros</h3>
-      <div id="achievements-list"></div>
-    </aside>
-
-    <!-- Notificación flotante de logro -->
-    <div id="achievement-toast" class="achievement-toast hidden">
-      <span id="toast-icon"></span>
-      <div>
-        <strong id="toast-name"></strong>
-        <p id="toast-desc"></p>
-      </div>
-    </div>
-  </div>
-
-  <!-- PANTALLA DE FIN DE PARTIDA -->
-  <div id="screen-end" class="screen">
-    <div class="end-container">
-      <div id="end-trophy" class="end-trophy">🏆</div>
-      <h2 id="end-title" class="end-title"></h2>
-      <p id="end-subtitle" class="end-subtitle"></p>
-      <div id="end-stats" class="end-stats"></div>
-      <div id="end-achievements" class="end-achievements"></div>
-      <div class="end-buttons">
-        <button id="play-again-btn" class="start-btn small">🔄 Jugar de nuevo</button>
-        <button id="back-menu-btn" class="start-btn small outline">🏠 Menú principal</button>
-      </div>
-    </div>
-  </div>
-  <!-- SCRIPTS -->
-  <script src="js/themes.js"></script>
-  <script src="js/timer.js"></script>
-  <script src="js/achievements.js"></script>
-  <script src="js/board.js"></script>
-  <script src="js/modes.js"></script>
-  <script src="js/hud.js"></script>
-  <script src="js/game.js"></script>
-  <script src="js/endScreen.js"></script>
-  <script src="js/menu.js"></script>
-  <script src="js/app.js"></script> 
-
-
+    <script src="js/state.js"></script>
+    <script src="js/themes.js"></script>
+    <script src="js/achievements.js"></script>
+    <script src="js/timer.js"></script>
+    <script src="js/hud.js"></script>
+    <script src="js/board.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/endScreen.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
