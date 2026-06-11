@@ -9,7 +9,7 @@
 
 |||Integrantes y division del trabajo||
 --Juan Chaustre Ci:30886168-- index.html, styles.css, menu.js, hud.js
---Nestor Rincon Ci:31249982-- themes.js, styles.css, board.js, Timer.js
+--Nestor Rincon Ci:31249982-- themes.js, styles.css, board.js, Timer.js,state.js
 ----------------------------------------------------------------
 
 > Nota: Ambos nos coordinamos para la creacion de styles.css y las funciones de los js
