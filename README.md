@@ -45,26 +45,23 @@ Temáticas implementadas
 | **Sin Titubeos**   | Memoria fotográfica | Encontrar un par correcto en el primerísimo movimiento de la partida. |
 
 ~~~~~~~~~📁 Estructura de archivos~~~~~~~~~~
-  index.html            → Estructura semántica principal
-  README.md             → Documentación del proyecto
+  index.html            
+  README.md             
   /css
-    styles.css          → Diseño, Flexbox, Grid dinámico y animaciones 3D
+    styles.css         
   /js
-    state.js            → Variables globales y estado de la aplicación
-    themes.js           → Catálogo de temáticas visuales y emojis
-    achievements.js     → Definición y verificación del sistema de logros
-    timer.js            → Lógica del cronómetro para el modo solitario
-    hud.js              → Actualización del panel de control en pantalla
-    board.js            → Generación dinámica del tablero y las cartas
-    game.js             → Lógica central de emparejamiento y turnos
-    endScreen.js        → Pantalla de fin de partida y estadísticas
-    menu.js             → Lógica de la pantalla de inicio y configuración
-    app.js              → Punto de entrada y mapeo de eventos del DOM
+    state.js           
+    themes.js           
+    achievements.js     
+    timer.js            
+    hud.js             
+    board.js            
+    game.js             
+    endScreen.js       
+    menu.js            
+    app.js            
 
-🛠️ Tecnologías Utilizadas
+🛠️ Tecnologías Utilizadas: 
 
-HTML5: Estructura semántica sin frameworks.
+HTML, CSS y JavaScript 
 
-CSS3: Variables nativas, CSS Grid dinámico, Flexbox, y animaciones de transformación 3D (Flip).
-
-JavaScript (Vanilla): Manipulación directa del DOM, manejo de eventos y lógica modular sin librerías externas.
