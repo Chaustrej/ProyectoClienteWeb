@@ -6,7 +6,7 @@
     --fondo-carta: #34495e;
     --color-carta: #ecf0f1;
     --color-acento: #e74c3c;
-    --columnas: 4; /* Este valor lo cambia JS dinámicamente según la dificultad */
+    --columnas: 4; 
 }
 
 /* RESETEO Y ESTILOS BASE */

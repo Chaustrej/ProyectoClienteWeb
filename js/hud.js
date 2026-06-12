@@ -2,8 +2,6 @@ function actualizarPanel() {
     const divJugadores = document.getElementById('panel-jugadores');
     const divTiempo = document.getElementById('panel-tiempo');
     const divMovimientos = document.getElementById('panel-movimientos');
-
-    // Lógica para modo Multijugador (PvP)
     if (estadoGlobal.modo === 'pvp') {
         divJugadores.innerHTML = `
             <span class="${estadoGlobal.indiceJugadorActivo === 0 ? 'jugador-activo' : ''}">${estadoGlobal.jugadores[0].nombre}: ${estadoGlobal.jugadores[0].puntaje}</span> | 
@@ -11,7 +9,6 @@ function actualizarPanel() {
         `;
         divTiempo.style.display = 'none';
     } 
-    // Lógica para modo Solitario o Libre
     else {
         divJugadores.innerHTML = `<span>${estadoGlobal.jugadores[0].nombre} (Pares: ${estadoGlobal.paresEncontrados})</span>`;
         divTiempo.style.display = estadoGlobal.modo === 'solitario' ? 'block' : 'none';
