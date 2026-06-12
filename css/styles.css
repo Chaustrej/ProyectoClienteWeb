@@ -2,6 +2,7 @@
 :root {
     --color-fondo: #f4f4f9;
     --color-primario: #2c3e50;
+    --color-gradiente: #ffffff;
     --fondo-carta: #34495e;
     --color-carta: #ecf0f1;
     --color-acento: #e74c3c;
@@ -17,9 +18,15 @@
 }
 
 body { 
-    background-color: var(--color-fondo); 
+    background: linear-gradient(-45deg, var(--color-fondo), var(--color-gradiente), var(--color-fondo), var(--color-gradiente));
+    background-size: 400% 400%;
+    animation: cambiarGradiente 12s ease infinite;
     color: var(--color-primario); 
-    transition: background-color 0.3s ease; 
+    min-height: 100vh; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
 }
 
 /* Clases utilitarias */
@@ -37,6 +44,7 @@ body {
 .formulario-configuracion, 
 .tarjeta-fin { 
     background: white; 
+    color: #1e293b; 
     padding: 2rem; 
     border-radius: 10px; 
     box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
@@ -54,6 +62,8 @@ input, select {
     border-radius: 5px; 
     font-size: 1rem; 
     width: 100%; 
+    color: #1e293b; 
+    background-color: white; 
 }
 
 .btn { 
@@ -66,7 +76,10 @@ input, select {
     font-weight: bold; 
 }
 
-.btn.primario { background: var(--color-primario); color: white; }
+.btn.primario { 
+    background: var(--color-acento); 
+    color: white; 
+}
 .btn.secundario { background: #95a5a6; color: white; }
 .btn:hover { opacity: 0.9; transform: scale(1.02); }
 
@@ -77,11 +90,18 @@ input, select {
     display: flex; 
     justify-content: space-between; 
     align-items: center; 
-    padding: 1rem; 
+    gap: 1.5rem; 
+    flex-wrap: wrap; 
+    padding: 1rem 2rem; 
     background: white; 
+    color: #1e293b; 
     border-radius: 0 0 10px 10px; 
     box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
     margin-bottom: 2rem; 
+}
+.elemento-panel {
+    font-size: 1.1rem;
+    font-weight: 600;
 }
 
 .jugador-activo { 
@@ -201,6 +221,11 @@ input, select {
     animation: deslizar 0.3s; 
 }
 
+@keyframes cambiarGradiente {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
 @keyframes deslizar { 
     from { transform: translateX(100%); } 
     to { transform: translateX(0); } 

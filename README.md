@@ -12,6 +12,7 @@
 --Juan Chaustre Ci:30886168-- index.html, styles.css, menu.js, hud.js,achievements.js, app.js,README.md
 
 --Nestor Rincon Ci:31249982-- themes.js, styles.css, board.js, Timer.js,state.js, game.js, EndScreen.js
+
 ----------------------------------------------------------------
 
 > Nota: Ambos nos coordinamos para la creacion de styles.css y las funciones de los js
@@ -60,4 +61,10 @@ Temáticas implementadas
     menu.js             → Lógica de la pantalla de inicio y configuración
     app.js              → Punto de entrada y mapeo de eventos del DOM
 
-Capturas de pantalla
+🛠️ Tecnologías Utilizadas
+
+HTML5: Estructura semántica sin frameworks.
+
+CSS3: Variables nativas, CSS Grid dinámico, Flexbox, y animaciones de transformación 3D (Flip).
+
+JavaScript (Vanilla): Manipulación directa del DOM, manejo de eventos y lógica modular sin librerías externas.
